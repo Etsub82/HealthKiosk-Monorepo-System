@@ -6,7 +6,10 @@ app.use(cors());
 
 app.get("/api/patient", (req, res) => {
   res.json({
-    message: "Patient API working"
+    name: "Abel",
+    age: 28,
+    heartRate: 76,
+    temperature: 36.6
   });
 });
 
