@@ -1,60 +1,24 @@
-import { useEffect, useState } from "react";
-import PatientCard from "./PatientCard";
+return (
+  <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center" }}>Smart Health Kiosk</h1>
 
-function App() {
-  const [patients, setPatients] = useState([]);
-  const [search, setSearch] = useState("");
+    {/* SEARCH */}
+    <input
+      type="text"
+      placeholder="Search patient..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ padding: "8px", margin: "10px", width: "200px" }}
+    />
 
-  // NEW FORM STATE
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/patients")
-      .then(res => res.json())
-      .then(data => setPatients(data))
-      .catch(err => console.error(err));
-  }, []);
-
-  // ADD PATIENT FUNCTION
-  const addPatient = () => {
-    const newPatient = {
-      name,
-      age,
-      heartRate: 70,
-      temperature: 36.5
-    };
-
-    setPatients([...patients, newPatient]);
-
-    // clear input
-    setName("");
-    setAge("");
-  };
-
-  const filteredPatients = patients.filter(p =>
-    p.name.toLowerCase().includes(search.toLowerCase())
-  );
-
-  return (
-    <div>
-      <h1>Smart Health Kiosk</h1>
-
-      {/* 🔍 SEARCH */}
-      <input
-        type="text"
-        placeholder="Search patient..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      {/* ➕ ADD PATIENT */}
-      <h3>Add Patient</h3>
+    {/* ADD PATIENT */}
+    <div style={{ margin: "10px" }}>
       <input
         type="text"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
       />
 
       <input
@@ -62,11 +26,25 @@ function App() {
         placeholder="Age"
         value={age}
         onChange={(e) => setAge(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
       />
 
-      <button onClick={addPatient}>Add</button>
+      <button
+        onClick={addPatient}
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Add
+      </button>
+    </div>
 
-      {/* 📋 DISPLAY */}
+    {/* PATIENT LIST */}
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       {filteredPatients.length > 0 ? (
         filteredPatients.map((p, i) => (
           <PatientCard key={i} {...p} />
@@ -75,7 +53,285 @@ function App() {
         <p>No patients found</p>
       )}
     </div>
-  );
-}
+  </div>
+);return (
+  <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center" }}>Smart Health Kiosk</h1>
 
-export default App;
+    {/* SEARCH */}
+    <input
+      type="text"
+      placeholder="Search patient..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ padding: "8px", margin: "10px", width: "200px" }}
+    />
+
+    {/* ADD PATIENT */}
+    <div style={{ margin: "10px" }}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <button
+        onClick={addPatient}
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Add
+      </button>
+    </div>
+
+    {/* PATIENT LIST */}
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {filteredPatients.length > 0 ? (
+        filteredPatients.map((p, i) => (
+          <PatientCard key={i} {...p} />
+        ))
+      ) : (
+        <p>No patients found</p>
+      )}
+    </div>
+  </div>
+);return (
+  <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center" }}>Smart Health Kiosk</h1>
+
+    {/* SEARCH */}
+    <input
+      type="text"
+      placeholder="Search patient..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ padding: "8px", margin: "10px", width: "200px" }}
+    />
+
+    {/* ADD PATIENT */}
+    <div style={{ margin: "10px" }}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <button
+        onClick={addPatient}
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Add
+      </button>
+    </div>
+
+    {/* PATIENT LIST */}
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {filteredPatients.length > 0 ? (
+        filteredPatients.map((p, i) => (
+          <PatientCard key={i} {...p} />
+        ))
+      ) : (
+        <p>No patients found</p>
+      )}
+    </div>
+  </div>
+);return (
+  <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center" }}>Smart Health Kiosk</h1>
+
+    {/* SEARCH */}
+    <input
+      type="text"
+      placeholder="Search patient..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ padding: "8px", margin: "10px", width: "200px" }}
+    />
+
+    {/* ADD PATIENT */}
+    <div style={{ margin: "10px" }}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <button
+        onClick={addPatient}
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Add
+      </button>
+    </div>
+
+    {/* PATIENT LIST */}
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {filteredPatients.length > 0 ? (
+        filteredPatients.map((p, i) => (
+          <PatientCard key={i} {...p} />
+        ))
+      ) : (
+        <p>No patients found</p>
+      )}
+    </div>
+  </div>
+);return (
+  <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center" }}>Smart Health Kiosk</h1>
+
+    {/* SEARCH */}
+    <input
+      type="text"
+      placeholder="Search patient..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ padding: "8px", margin: "10px", width: "200px" }}
+    />
+
+    {/* ADD PATIENT */}
+    <div style={{ margin: "10px" }}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <button
+        onClick={addPatient}
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Add
+      </button>
+    </div>
+
+    {/* PATIENT LIST */}
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {filteredPatients.length > 0 ? (
+        filteredPatients.map((p, i) => (
+          <PatientCard key={i} {...p} />
+        ))
+      ) : (
+        <p>No patients found</p>
+      )}
+    </div>
+  </div>
+);return (
+  <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center" }}>Smart Health Kiosk</h1>
+
+    {/* SEARCH */}
+    <input
+      type="text"
+      placeholder="Search patient..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      style={{ padding: "8px", margin: "10px", width: "200px" }}
+    />
+
+    {/* ADD PATIENT */}
+    <div style={{ margin: "10px" }}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        style={{ marginRight: "5px", padding: "8px" }}
+      />
+
+      <button
+        onClick={addPatient}
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Add
+      </button>
+    </div>
+
+    {/* PATIENT LIST */}
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {filteredPatients.length > 0 ? (
+        filteredPatients.map((p, i) => (
+          <PatientCard key={i} {...p} />
+        ))
+      ) : (
+        <p>No patients found</p>
+      )}
+    </div>
+  </div>
+);
