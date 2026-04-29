@@ -3,8 +3,10 @@ const cors = require("cors");
 
 const app = express();
 
-// ✅ THIS LINE IS VERY IMPORTANT
-app.use(cors());
+// ✅ Allow frontend (VERY IMPORTANT)
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 
 app.get("/api/patients", (req, res) => {
   res.json([
@@ -12,7 +14,7 @@ app.get("/api/patients", (req, res) => {
     { name: "Sara", age: 25, heartRate: 80, temperature: 37.0 }
   ]);
 });
-
+const PORT = process.env.PORT || 5000;
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
