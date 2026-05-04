@@ -5,18 +5,29 @@ import { fetchPatients } from "./services/api";
 function App() {
   const [patients, setPatients] = useState([]);
   const [search, setSearch] = useState("");
+  const [error, setError] = useState("");
 
   // Add Patient state
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
-  // Fetch data from API (SERVICE LAYER)
+  // Fetch data from API
   useEffect(() => {
     fetchPatients().then(data => setPatients(data));
   }, []);
 
-  // Add Patient
+  // Add Patient with validation
   const addPatient = () => {
+    if (!name || !age) {
+      setError("Please fill all fields");
+      return;
+    }
+
+    if (age <= 0) {
+      setError("Age must be positive");
+      return;
+    }
+
     const newPatient = {
       name,
       age,
@@ -28,6 +39,7 @@ function App() {
 
     setName("");
     setAge("");
+    setError("");
   };
 
   // Search filter
@@ -65,6 +77,13 @@ function App() {
           onChange={(e) => setAge(e.target.value)}
           style={{ marginRight: "5px", padding: "8px" }}
         />
+
+        {/* ✅ ERROR MESSAGE */}
+        {error && (
+          <p style={{ color: "red", margin: "5px" }}>
+            {error}
+          </p>
+        )}
 
         <button
           onClick={addPatient}
